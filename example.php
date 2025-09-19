@@ -40,7 +40,7 @@ try {
     echo "Example 1: Simple photo post with caption\n";
 
     // Using the famous Lenna test image for testing
-    $imageUrl = 'https://github.com/codeChap/i/blob/master/lenna2.png';
+    $imageUrl = 'https://github.com/codeChap/i/blob/master/lenna1.png';
 
     $msg = new Msg();
     $msg->set('content', 'Sharing the iconic Lenna test image! Lenna is a classic standard in image processing, used worldwide since the 1970s for digital image algorithms and computer vision research.');
