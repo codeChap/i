@@ -29,6 +29,7 @@ Your access token needs these permissions:
 
 ```bash
 composer require codechap/i
+composer require codechap/i @dev
 ```
 
 ## Quick Start
