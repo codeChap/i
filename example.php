@@ -40,7 +40,7 @@ try {
     echo "Example 1: Simple photo post with caption\n";
 
     // Using the famous Lenna test image for testing
-    $imageUrl = 'https://github.com/codeChap/i/blob/master/lenna1.jpg';
+    $imageUrl = 'https://raw.githubusercontent.com/codeChap/i/refs/heads/master/lenna1.jpg';
 
     $msg = new Msg();
     $msg->set('content', 'Sharing the iconic Lenna test image! Lenna is a classic standard in image processing, used worldwide since the 1970s for digital image algorithms and computer vision research.');
@@ -49,34 +49,13 @@ try {
     $response = $ig->post($msg);
     echo "✓ Posted successfully! ID: " . $response['id'] . "\n\n";
 
-    // Example 2: Photo post using local file (requires upload to public URL)
-    if (file_exists('test-image.jpg')) {
-        echo "Example 2: Photo post with local file\n";
-        echo "NOTE: Instagram requires public URLs. You need to upload local files to a service like AWS S3, Google Cloud Storage, etc.\n";
-
-        // This example shows how you would handle local files in production:
-        $localImage = 'test-image.jpg';
-
-        // Step 1: Upload to public storage and get URL
-        // $publicUrl = uploadToCloudStorage($localImage);
-
-        // Step 2: Create post with public URL
-        // $photoMsg = new Msg();
-        // $photoMsg->set('content', 'Check out this amazing photo!');
-        // $photoMsg->set('image', $publicUrl);
-        // $response = $ig->post($photoMsg);
-        // echo "✓ Photo posted! ID: " . $response['id'] . "\n\n";
-
-        echo "❌ Local file example commented out - requires public URL upload implementation\n\n";
-    }
-
-    // Example 3: Carousel post with multiple photos
-    echo "Example 3: Carousel post with multiple photos\n";
+    // Example 2: Carousel post with multiple photos
+    echo "Example 2: Carousel post with multiple photos\n";
 
     // For carousel posts, using the Lenna image
     $carouselImages = [
-        'https://github.com/codeChap/i/blob/master/lenna1.jpg', // Lenna image
-        'https://github.com/codeChap/i/blob/master/lenna2.jpg', // Same for testing
+        'https://raw.githubusercontent.com/codeChap/i/refs/heads/master/lenna1.jpg', // Lenna image
+        'https://raw.githubusercontent.com/codeChap/i/refs/heads/master/lenna2.jpg', // Same for testing
     ];
 
     $photo1 = new Msg();
@@ -93,35 +72,6 @@ try {
 
     $response = $ig->post([$photo1, $photo2, $photo3]);
     echo "✓ Carousel post created! ID: " . $response['id'] . "\n\n";
-
-    // Example 4: Get Instagram account info
-    echo "Example 4: Instagram account information\n";
-    $info = $ig->me();
-    echo "✓ Instagram Username: " . $info['data']['username'] . "\n";
-    echo "✓ Account Name: " . $info['data']['name'] . "\n";
-    echo "✓ Followers Count: " . ($info['data']['followers_count'] ?? 'Not available') . "\n";
-    echo "✓ Media Count: " . ($info['data']['media_count'] ?? 'Not available') . "\n\n";
-
-    // Example 5: Get Instagram Account ID from Facebook Page
-    echo "Example 5: Get Instagram Account ID from Facebook Page\n";
-    if (!$igAccountId) {
-        // The post() method above would have already retrieved this, so we can access it
-        $ig->set('facebookPageId', $facebookPageId);
-        $ig->set('accessToken', $accessToken);
-
-        // This will trigger the retrieval if we don't have igAccountId
-        $tempIg = new I();
-        $tempIg->set('facebookPageId', $facebookPageId);
-        $tempIg->set('accessToken', $accessToken);
-
-        try {
-            $accountInfo = $tempIg->me();
-            echo "✓ Found Instagram Account: @" . $accountInfo['data']['username'] . " (ID: " . $accountInfo['data']['id'] . ")\n\n";
-        } catch (\Exception $e) {
-            echo "❌ No Instagram Business Account linked to this Facebook Page\n";
-            echo "Make sure your Facebook Page has an Instagram Business Account connected.\n\n";
-        }
-    }
 
 } catch (\RuntimeException $e) {
     echo "❌ Instagram API Error: " . $e->getMessage() . "\n";
