@@ -1,0 +1,22 @@
+{
+    "name": "codechap/i",
+    "description": "Posts to your Instagram Business account only.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "codechap\\i\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "authors": [
+        {
+            "name": "CodeChap",
+            "email": "hello@codechap.com"
+        }
+    ]
+}
