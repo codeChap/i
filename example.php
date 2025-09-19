@@ -39,11 +39,11 @@ try {
     // Example 1: Simple photo post with caption
     echo "Example 1: Simple photo post with caption\n";
 
-    // Using the provided image URL for testing
-    $imageUrl = 'https://holidaystays.co.za/imgCache/2270/d71db83657b0aca07ccfda1ceb69f82f.webp';
+    // Using the famous Lenna test image for testing
+    $imageUrl = 'https://upload.wikimedia.org/wikipedia/en/7/7b/Lenna_%28test_image%29.png';
 
     $msg = new Msg();
-    $msg->set('content', 'Hello Instagram! This is a test post from the PHP I package.');
+    $msg->set('content', 'Sharing the iconic Lenna test image! Lenna is a classic standard in image processing, used worldwide since the 1970s for digital image algorithms and computer vision research.');
     $msg->set('image', $imageUrl);
 
     $response = $ig->post($msg);
@@ -73,22 +73,22 @@ try {
     // Example 3: Carousel post with multiple photos
     echo "Example 3: Carousel post with multiple photos\n";
 
-    // For carousel posts, using the provided image URL
+    // For carousel posts, using the Lenna image
     $carouselImages = [
-        'https://holidaystays.co.za/imgCache/2270/d71db83657b0aca07ccfda1ceb69f82f.webp', // Using provided URL
-        'https://holidaystays.co.za/imgCache/2270/d71db83657b0aca07ccfda1ceb69f82f.webp', // Using same URL for testing
+        'https://upload.wikimedia.org/wikipedia/en/7/7b/Lenna_%28test_image%29.png', // Lenna image
+        'https://upload.wikimedia.org/wikipedia/en/7/7b/Lenna_%28test_image%29.png', // Same for testing
     ];
 
     $photo1 = new Msg();
-    $photo1->set('content', 'Beautiful view from my vacation!');
+    $photo1->set('content', 'The iconic Lenna test image, a staple in image processing since 1973!');
     $photo1->set('image', $carouselImages[0]);
 
     $photo2 = new Msg();
-    $photo2->set('content', 'Amazing sunset scene');
+    $photo2->set('content', 'Lenna: The face that launched a thousand algorithms in computer vision.');
     $photo2->set('image', $carouselImages[1]);
 
     $photo3 = new Msg();
-    $photo3->set('content', 'Photo gallery from my recent trip!');
+    $photo3->set('content', 'Celebrating Lenna, the benchmark image for digital image compression and enhancement.');
     $photo3->set('image', $carouselImages[0]); // Using the same image for testing
 
     $response = $ig->post([$photo1, $photo2, $photo3]);
